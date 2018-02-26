@@ -1,6 +1,6 @@
 ;;
-;;  remap  -  modular transactional file system in Common Lisp
-;;  Thomas de Grivel <thoxdg@gmail.com> +33614550127
+;;  unistd-remap  -  UNISTD interface for REMAP.
+;;  Thomas de Grivel  <thoxdg@gmail.com>  +33614550127
 ;;
 
 (in-package :remap)
