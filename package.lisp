@@ -31,6 +31,7 @@
            #:html
            #:ls
            #:pwd
+           #:remap
            #:shell
            #:sync
            #:to))
