@@ -5,7 +5,7 @@
 
 (in-package :common-lisp-user)
 
-;;  All URIs and paths should go here
+;;  All reusable URIs and paths should go here
 
 (defpackage :remap.uri)
 
