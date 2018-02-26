@@ -116,7 +116,10 @@ in which case no file will be created."))
         (incf count)))
     count))
 
-#+nil(ls)
+#+test(ls)
 
 (defun cat (&rest paths)
-  (apply #'remap-cat *remap* paths))
+  (let ((remap *remap*))
+    (apply #'remap-cat remap paths)))
+
+#+test(dir :path "*.txt")
