@@ -5,37 +5,11 @@
 
 (in-package :common-lisp-user)
 
-;;  All reusable URIs and paths should go here
-
-(defpackage :remap.uri)
-
-;;  Here we control data remapping
-
-(defpackage :remap
-  (:use :babel-stream
-        :cl
+(defpackage :unistd-remap
+  (:use :cl
         :cl-stream
-        :local-time
-        :remap.uri
-        :rollback
-        :split-sequence
+        :remap
         :unistd-stream)
   #.(cl-stream:shadowing-import-from)
-  (:export #:*hooks*
-           #:*remap*
-           #:absolute
-           #:absolute!
-           #:absolute-or-wild!
-           #:absolute-p
-           #:cd
-           #:cwd
-           #:from
-           #:ftp
-           #:http
-           #:html
-           #:ls
-           #:pwd
-           #:remap
-           #:shell
-           #:sync
-           #:to))
+  (:export #:*remap*
+           #:unistd))

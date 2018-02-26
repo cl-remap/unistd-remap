@@ -3,16 +3,13 @@
 ;;  Thomas de Grivel  <thoxdg@gmail.com>  +33614550127
 ;;
 
-(in-package :remap)
+(in-package :unistd-remap)
 
 (defclass unistd (remap)
   ())
 
-(defvar *remap-unistd*
+(defvar *remap*
   (make-instance 'unistd))
-
-(defparameter *remap*
-  *remap-unistd*)
 
 (defmethod remap-cwd ((remap unistd))
   (unistd:getcwd))
