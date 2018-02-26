@@ -1,5 +1,5 @@
 ;;
-;;  remap - modular transactional file system in Common Lisp
+;;  remap  -  modular transactional file system in Common Lisp
 ;;  Thomas de Grivel <thoxdg@gmail.com> +33614550127
 ;;
 
