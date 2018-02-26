@@ -22,11 +22,9 @@
                "unistd-stdio"
                "local-time"
                "rollback"
-               "split-sequence"
-               "uiop")
+               "split-sequence")
   :components
   ((:file "package")
    (:file "remap" :depends-on ("package"))
    (:file "shell" :depends-on ("remap"))
-   (:file "uiop" :depends-on ("remap"))
    (:file "unistd" :depends-on ("remap"))))
