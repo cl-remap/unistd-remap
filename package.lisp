@@ -23,6 +23,10 @@
   #.(cl-stream:shadowing-import-from)
   (:export #:*hooks*
            #:*remap*
+           #:absolute
+           #:absolute!
+           #:absolute-or-wild!
+           #:absolute-p
            #:cd
            #:cwd
            #:from
