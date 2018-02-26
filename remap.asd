@@ -25,6 +25,7 @@
                "split-sequence")
   :components
   ((:file "package")
-   (:file "remap" :depends-on ("package"))
+   (:file "path" :depends-on ("package"))
+   (:file "remap" :depends-on ("path"))
    (:file "shell" :depends-on ("remap"))
    (:file "unistd" :depends-on ("remap"))))
