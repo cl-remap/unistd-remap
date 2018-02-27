@@ -11,5 +11,5 @@
         :remap
         :unistd-stream)
   #.(cl-stream:shadowing-import-from)
-  (:export #:*remap*
-           #:unistd))
+  (:export #:*unistd-remap*
+           #:unistd-remap))
