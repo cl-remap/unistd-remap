@@ -37,6 +37,21 @@
   (unistd:chdir directory)
   (values))
 
+(defmethod remap-dir ((remap unistd-remap) (path string)
+                      (sort null) (order null))
+  (let ((list ()))
+    (dirent:do-dir (dirent path)
+      (push (dirent:dirent-name dirent) list))
+    list))
+
+(defmethod remap-dir ((remap unistd-remap) (path string)
+                      (sort (eql 'name)) (order (eql '<)))
+  (sort (remap-dir remap path nil nil) #'string<))
+
+(defmethod remap-dir ((remap unistd-remap) (path string)
+                      (sort (eql 'name)) (order (eql '>)))
+  (sort (remap-dir remap path nil nil) #'string>))
+
 (defmethod remap-open ((remap unistd-remap) (path string)
                        &key read write append (create #o777)
                          non-blocking
