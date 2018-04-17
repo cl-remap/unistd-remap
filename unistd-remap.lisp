@@ -64,3 +64,6 @@
                       :non-blocking non-blocking :create create
                       :input-buffer-size input-buffer-size
                       :output-buffer-size output-buffer-size))
+
+(defmethod remap-unlink ((remap unistd-remap) (path string))
+  (unistd:unlink path))
