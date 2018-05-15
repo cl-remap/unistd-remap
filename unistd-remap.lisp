@@ -24,11 +24,10 @@
       (push ent dir))
     dir))
 
-(defmethod remap-dir ((remap unistd-remap) (path string) (sort (eql :name))
+(defmethod remap-dir ((remap unistd-remap) (path string) (sort (eql 'name))
                       (order (eql '<)))
-  (let* ((dir (remap-dir remap path nil nil))
-         (sorted (sort dir #'string< :key #'dirent:dirent-name)))
-    (mapcar #'dirent:dirent-name sorted)))
+  (let ((dir (remap-dir remap path nil nil)))
+    (sort dir #'string<)))
 
 (defmethod remap-home ((remap unistd-remap) (user null))
   (unistd:getenv "HOME"))
