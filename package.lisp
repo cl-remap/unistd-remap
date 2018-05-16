@@ -9,6 +9,7 @@
   (:use :cl
         :cl-stream
         :remap
+        :str
         :unistd-stream)
   #.(cl-stream:shadowing-import-from)
   (:export #:*unistd-remap*

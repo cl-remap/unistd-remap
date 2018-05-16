@@ -17,7 +17,8 @@
   :description "UNISTD interface for REMAP"
   :depends-on ("cffi-dirent"
                "unistd-stream"
-               "remap")
+               "remap"
+               "str")
   :components
   ((:file "package")
    (:file "unistd-remap" :depends-on ("package"))))

@@ -51,8 +51,26 @@
                       (sort (eql 'name)) (order (eql '>)))
   (sort (remap-dir remap path nil nil) #'string>))
 
+(defmethod remap-link ((remap unistd-remap) (source string)
+                       (destination string))
+  (let ((dest (if (path-directory-p destination)
+                  (str destination (path-filename source))
+                  destination)))
+    (ignore-errors
+      (unistd:link source dest)
+      t)))
+
+(defmethod remap-mv ((remap unistd-remap) (source string)
+                     (destination string))
+  (let ((dest (if (path-directory-p destination)
+                  (str destination (path-filename source))
+                  destination)))
+    (and (or (remap-link remap source dest)
+             (remap-cp remap source dest))
+         (remap-unlink remap source))))
+
 (defmethod remap-open ((remap unistd-remap) (path string)
-                       &key read write append (create #o777)
+                       &key read write append (create #o666)
                          non-blocking
                          (input-buffer-size
                           *stream-default-buffer-size*)
