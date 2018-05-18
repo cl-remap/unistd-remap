@@ -36,6 +36,23 @@
   (unistd:chdir directory)
   (values))
 
+(defmethod remap-cut ((remap unistd-remap) (path string)
+                      (start integer) (end null))
+  (with-stream (in (babel-input-stream
+                    (unistd-stream-open path :read t :create nil)))
+    (unistd:lseek (stream-fd (stream-underlying-stream in))
+                  start unistd:+seek-set+)
+    (stream-copy in *stdout*)))
+
+(defmethod remap-cut ((remap unistd-remap) (path string)
+                      (start integer) (end integer))
+  (when (< start end)
+    (with-stream (in (babel-input-stream
+                      (unistd-stream-open path :read t :create nil)))
+      (unistd:lseek (stream-fd (stream-underlying-stream in))
+                    start unistd:+seek-set+)
+      (stream-copy-n in *stdout* (- end start)))))
+
 (defmethod remap-dir ((remap unistd-remap) (path string)
                       (sort null) (order null))
   (let ((list ()))

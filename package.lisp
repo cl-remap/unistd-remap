@@ -6,7 +6,8 @@
 (in-package :common-lisp-user)
 
 (defpackage :unistd-remap
-  (:use :cl
+  (:use :babel-stream
+        :cl
         :cl-stream
         :remap
         :str

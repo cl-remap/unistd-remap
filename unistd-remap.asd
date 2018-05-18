@@ -15,7 +15,8 @@
   :author "Thomas de Grivel  <thoxdg@gmail.com>  +33614550127"
   :version "0.2"
   :description "UNISTD interface for REMAP"
-  :depends-on ("cffi-dirent"
+  :depends-on ("babel-stream"
+               "cffi-dirent"
                "unistd-stream"
                "remap"
                "str")
