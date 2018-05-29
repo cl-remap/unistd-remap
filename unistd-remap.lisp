@@ -15,7 +15,7 @@
   *unistd-remap*)
 
 (defmethod remap-cwd ((remap unistd-remap))
-  (str (unistd:getcwd) "/"))
+  (path-as-directory (unistd:getcwd)))
 
 (defmethod remap-dir ((remap unistd-remap) (path string) (sort null)
                       (order null))
@@ -30,7 +30,7 @@
     (sort dir #'string<)))
 
 (defmethod remap-home ((remap unistd-remap) (user null))
-  (unistd:getenv "HOME"))
+  (path-as-directory (unistd:getenv "HOME")))
 
 (defmethod remap-cd ((remap unistd-remap) (directory string))
   (unistd:chdir directory)
