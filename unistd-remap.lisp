@@ -14,24 +14,6 @@
 (defvar *remap*
   *unistd-remap*)
 
-(defmethod remap-cwd ((remap unistd-remap))
-  (path-as-directory (unistd:getcwd)))
-
-(defmethod remap-dir ((remap unistd-remap) (path string) (sort null)
-                      (order null))
-  (let ((dir ()))
-    (dirent:do-dir (ent path)
-      (push ent dir))
-    dir))
-
-(defmethod remap-dir ((remap unistd-remap) (path string) (sort (eql 'name))
-                      (order (eql '<)))
-  (let ((dir (remap-dir remap path nil nil)))
-    (sort dir #'string<)))
-
-(defmethod remap-home ((remap unistd-remap) (user null))
-  (path-as-directory (unistd:getenv "HOME")))
-
 (defmethod remap-cd ((remap unistd-remap) (directory string))
   (unistd:chdir directory)
   (values))
@@ -53,12 +35,17 @@
                     start unistd:+seek-set+)
       (stream-copy-n in *stdout* (- end start)))))
 
+(defmethod remap-cwd ((remap unistd-remap))
+  (path-as-directory (unistd:getcwd)))
+
 (defmethod remap-dir ((remap unistd-remap) (path string)
                       (sort null) (order null))
   (let ((list ()))
     (dirent:do-dir (dirent path)
       (push (dirent:dirent-name dirent) list))
     list))
+
+;(trace remap-dir dirent:dirent-name)
 
 (defmethod remap-dir ((remap unistd-remap) (path string)
                       (sort (eql 'name)) (order (eql '<)))
@@ -67,6 +54,9 @@
 (defmethod remap-dir ((remap unistd-remap) (path string)
                       (sort (eql 'name)) (order (eql '>)))
   (sort (remap-dir remap path nil nil) #'string>))
+
+(defmethod remap-home ((remap unistd-remap) (user null))
+  (path-as-directory (unistd:getenv "HOME")))
 
 (defmethod remap-link ((remap unistd-remap) (source string)
                        (destination string))
